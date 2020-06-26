@@ -28,3 +28,11 @@ export default function Home() {
     </div>
   )
 }
+
+Home.getInitialProps = async (ctx) => {
+  const response = null // get api to bssm await fetch()
+  const bssms = response.json()
+  return {
+    bssms
+  }
+}
