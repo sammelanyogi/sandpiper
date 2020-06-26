@@ -1,7 +1,3 @@
-export default function BSQ (props) {
-    return (
-        <div>
-            BSQ
-        </div>
-    )
+export default function BSQ(props) {
+  return <div>BSQ</div>;
 }
