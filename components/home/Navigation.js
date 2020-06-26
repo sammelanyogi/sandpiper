@@ -89,6 +89,7 @@ export default function Navigation(props) {
             font-size: 2rem;
           }
           .navbar {
+            z-index: 5;
             background-color: white;
           }
           .nav-link {

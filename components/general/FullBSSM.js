@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function BSSM({ source, meta, number }) {
+export default function FullBSSM({ source, meta, number }) {
   return (
     <div className="main">
       <div className="bssm d-flex flex-column ">
@@ -10,14 +10,25 @@ export default function BSSM({ source, meta, number }) {
           )}
           {meta.type == "video" && <video src={source}></video>}
         </div>
-        <div className="p-4">
-          <div className="topic py-2">{meta.topic}</div>
-          <div className=" metadata  d-flex flex-column justify-content-between">
-            <div className="meta">
-              <div className="metatitle">{meta.title}</div>
-              <div className="description">{meta.description}</div>
+        <div className="row p-4">
+          <div className="col-md-8">
+            <div className="d-flex justify-content-between">
+              <div>
+                <div className="topic py-2">{meta.topic}</div>
+                <div className="metatitle">{meta.title}</div>
+              </div>
+              <div>
+                  <span>Save</span>
+                  <span>Download </span>
+              </div>
             </div>
 
+            <div className="meta">
+              <div className="description">{meta.description}</div>
+            </div>
+          </div>
+
+          <div className="col-md-4 metadata  d-flex flex-column justify-content-between">
             <div className="creator d-flex justify-content-between">
               <div>
                 <div>
@@ -45,6 +56,7 @@ export default function BSSM({ source, meta, number }) {
         {`
           .main {
             background-color: white;
+            width: 60vw;
           }
           .metatitle {
             font-size: 1.2rem;
