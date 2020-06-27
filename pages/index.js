@@ -3,8 +3,10 @@ import BSSM from "../components/general/BSSM";
 
 import React, { Component } from "react";
 import $ from "jquery";
+import {useRouter} from 'next/router'
 import { Modal, ModalBody } from "reactstrap";
 import FullBSSM from "../components/general/FullBSSM";
+import Link from "next/link";
 
 if (typeof window !== "undefined") {
   window.$ = $;
@@ -12,24 +14,26 @@ if (typeof window !== "undefined") {
   require("materialize-css");
 }
 
-export default class Home extends Component {
+ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      router: props.router,
       modalShow: Array.apply(false, Array(bssms.length)).map(function () {}),
       searchState: 1,
     };
   }
+  
   goLeft(i) {
     let newarr = this.state.modalShow;
     newarr[i] = !this.state.modalShow[i];
-    newarr[i-1] = !this.state.modalShow[i-1];
+    newarr[i - 1] = !this.state.modalShow[i - 1];
     this.setState({ modalShow: newarr });
   }
-  goRight (i){
+  goRight(i) {
     let newarr = this.state.modalShow;
     newarr[i] = !this.state.modalShow[i];
-    newarr[i+1] = !this.state.modalShow[i+1];
+    newarr[i + 1] = !this.state.modalShow[i + 1];
     this.setState({ modalShow: newarr });
   }
   changeSearch(i) {
@@ -38,9 +42,13 @@ export default class Home extends Component {
   toggleStyle(i) {
     let newarr = this.state.modalShow;
     newarr[i] = !this.state.modalShow[i];
+    if(this.state.modalShow[i]==false) {
+      this.state.router.push('/')
+    }
     this.setState({ modalShow: newarr });
   }
   componentDidMount() {
+    console.log(this.state.router)
     $(".carousel").carousel();
   }
   render() {
@@ -55,14 +63,18 @@ export default class Home extends Component {
                 key={index}
               >
                 <MaterialModal
-                  left={()=>this.goLeft(index)}
-                  right={()=>this.goRight(index)}
+                  left={() => this.goLeft(index)}
+                  right={() => this.goRight(index)}
                   show={this.state.modalShow[index]}
                   source={item.source}
                   meta={item.meta}
                   onHide={() => this.toggleStyle(index)}
                 />
-                <BSSM source={item.source} meta={item.meta} />
+                <Link href={`/?query=${index}`} as={`/content/${index}`}>
+                  <a style={{textDecoration: "none"}}>
+                    <BSSM source={item.source} meta={item.meta} />
+                  </a>
+                </Link>
               </div>
             );
           })}
@@ -165,15 +177,25 @@ function MaterialModal(props) {
   return (
     <Modal isOpen={props.show} toggle={props.onHide} size="xl" centered>
       <div className="d-flex align-items-center">
-        <img src="/images/icons/left.png" alt="left" className="px-4" onClick={props.left} />
+        <img
+          src="/images/icons/left.png"
+          alt="left"
+          className="px-4"
+          onClick={props.left}
+        />
         <FullBSSM source={props.source} meta={props.meta} />
-        <img src="/images/icons/right.png" alt="left" className="px-4" onClick={props.right} />
+        <img
+          src="/images/icons/right.png"
+          alt="left"
+          className="px-4"
+          onClick={props.right}
+        />
       </div>
-      <style global>
+      <style jsx global>
         {`
           .modal-content {
-            border: none;
-            background-color: rbga(0, 0, 0, 0);
+            border: none !important;
+            background-color: transparent !important; 
           }
           .modal-xl {
             max-width: 80vw;
@@ -183,6 +205,11 @@ function MaterialModal(props) {
     </Modal>
   );
 }
+const HomeWithRouter = (props) => {
+  const router = useRouter();
+  return <Home {...props} router={router} />
+}
+export default HomeWithRouter;
 
 const bssms = [
   {
