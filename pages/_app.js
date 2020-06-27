@@ -1,5 +1,5 @@
 
-import 'bootstrap/dist/css/bootstrap.css'
+import '../public/bootstrap.css'
 import Head from "next/head";
 import Router from "next/router";
 import NProgress from "nprogress";
