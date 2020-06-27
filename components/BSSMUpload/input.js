@@ -1,11 +1,11 @@
 export default function Input({ describe = "", type = 'text', placeholder = "", smallText }) {
     return (
-        <div class="form-group">
-            <label for="exampleInputEmail1">{describe}</label>
-            <input type={type} class="form-control" placeholder={placeholder} />
+        <div className="form-group">
+            <label >{describe}</label>
+            <input type={type} className="form-control" placeholder={"" + placeholder} />
 
             {!!smallText &&
-                <small class="form-text text-muted">{smallText}</small>
+                <small className="form-text text-muted">{smallText}</small>
             }
         </div>
     )

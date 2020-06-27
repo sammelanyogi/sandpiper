@@ -2,13 +2,14 @@ import { useState } from "react";
 export default function SideBar(props) {
   const [current, setCurrent] = useState(0);
   return (
-    <>
+    <div className={props.className}>
       <div className="orange shadow px-5">
         <table className="table table-borderless">
-          <div className="d-flex flex-column justify-content-between ">
+          <tbody className="d-flex flex-column justify-content-between ">
             {data.map((item, index) => {
               return (
                 <tr
+                  key={index}
                   onClick={() => {
                     props.getValue(index);
                     setCurrent(index);
@@ -23,7 +24,7 @@ export default function SideBar(props) {
                 </tr>
               );
             })}
-          </div>
+          </tbody>
         </table>
       </div>
       <style jsx>
@@ -53,7 +54,7 @@ export default function SideBar(props) {
           }
         `}
       </style>
-    </>
+    </div>
   );
 }
 

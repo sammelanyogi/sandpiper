@@ -5,7 +5,7 @@ export default function Upload() {
             <div className="input-group">
                 <div className="input-group-prepend">
                     <span className="input-group-text" id="inputGroupFileAddon01">
-                        Upload
+                        Upload Video
                     </span>
                 </div>
                 <div className="custom-file">
