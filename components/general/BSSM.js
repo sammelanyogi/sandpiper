@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function BSSM({ source, meta, number }) {
+export default function BSSM({ source, meta }) {
   return (
     <div className="main">
       <div className="bssm d-flex flex-column ">
@@ -8,10 +8,15 @@ export default function BSSM({ source, meta, number }) {
           {meta.type == "image" && (
             <img src={source} className="bssms" alt="bssm" />
           )}
-          {meta.type == "video" && <video src={source}></video>}
+          {meta.type == "video" && (
+            <video className="bssms" controls>
+              <source src={source} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
         <div className="p-4">
-          <div className="topic py-2">{meta.topic}</div>
+          <div className="topic">{meta.topic}</div>
           <div className=" metadata  d-flex flex-column justify-content-between">
             <div className="meta">
               <div className="metatitle">{meta.title}</div>

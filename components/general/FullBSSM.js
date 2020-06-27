@@ -8,7 +8,12 @@ export default function FullBSSM({ source, meta, number }) {
           {meta.type == "image" && (
             <img src={source} className="bssms" alt="bssm" />
           )}
-          {meta.type == "video" && <video src={source}></video>}
+          {meta.type == "video" && (
+            <video className="bssms-vid" controls>
+              <source src={source} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
         <div className="row p-4">
           <div className="col-md-8">
@@ -18,8 +23,8 @@ export default function FullBSSM({ source, meta, number }) {
                 <div className="metatitle">{meta.title}</div>
               </div>
               <div>
-                  <span>Save</span>
-                  <span>Download </span>
+                <span>Save</span>
+                <span>Download </span>
               </div>
             </div>
 
@@ -54,9 +59,14 @@ export default function FullBSSM({ source, meta, number }) {
       </div>
       <style jsx>
         {`
+          .content {
+            position: relative;
+            padding-bottom: 56.75%;
+          }
           .main {
             background-color: white;
-            width: 60vw;
+            width: 80vw;
+            border-radius: 10px;
           }
           .metatitle {
             font-size: 1.2rem;
@@ -76,7 +86,17 @@ export default function FullBSSM({ source, meta, number }) {
             border-radius: 50%;
           }
           .bssms {
+            object-fit: cover;
+            position: absolute;
             width: 100%;
+            height: 100%;
+            border-radius: 10px 10px 0 0;
+          }
+          .bssms-vid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 10px 10px 0 0;
           }
           .bssm {
