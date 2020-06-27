@@ -9,10 +9,10 @@ export default function Forum() {
             <Layout title="Forum">
                 <div className="container mx-auto">
                     <div className="row">
-                        <div className="col">
+                        <div className="col-4">
                             <Sidebar getValue={x => console.log(x)} />
                         </div>
-                        <div className="col">
+                        <div className="col-8">
                             <BSSMUpload />
                         </div>
                     </div>
