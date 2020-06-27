@@ -6,6 +6,31 @@ import axios from "axios"
 
 export default function Forum() {
     let [curpage, setCurpage] = useState("video")
+    let [uploadProgress, setUploadProgress] = useState(2);
+
+    function sendVideoToServer(form){
+       axios.post("", ) 
+       axios({
+            method: 'post',
+            url: 'http://bssm.nirav.codes/uploadvideo',
+            data: form,
+            headers: {'Content-Type': 'multipart/form-data' },
+            onUploadProgress: function(progressEvent) {
+              var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              console.log(percentCompleted)
+              setUploadProgress(percentCompleted)
+            }
+        })
+        .then(function (response) {
+            //handle success
+            console.log(response);
+        })
+        .catch(function (response) {
+            //handle error
+            console.log(response);
+        });
+    }
+
     return (
         <>
             <Layout title="Forum">
@@ -16,7 +41,7 @@ export default function Forum() {
                         </div>
                         <div className="col-8">
                             {curpage === "video" &&
-                                <BSSMUpload />
+                                <BSSMUpload onSubmit={sendVideoToServer} progress ={uploadProgress}/>
                             }
                         </div>
                     </div>

@@ -1,5 +1,7 @@
-
-export default function Upload() {
+export default function Upload({ onUpload }) {
+    function upload(e) {
+        onUpload(e.target.files[0]);
+    }
     return (
         <>
             <div className="input-group">
@@ -14,6 +16,7 @@ export default function Upload() {
                         className="custom-file-input"
                         id="inputGroupFile01"
                         aria-describedby="inputGroupFileAddon01"
+                        onChange={upload}
                     />
                     <label className="custom-file-label" htmlFor="inputGroupFile01">
                         Choose file
