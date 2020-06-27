@@ -23,7 +23,7 @@ export default function BSSM({ source, meta }) {
               <div className="description">{meta.description}</div>
             </div>
 
-            <div className="creator d-flex justify-content-between">
+            <div className="creator pt-3 d-flex justify-content-between">
               <div>
                 <div>
                   <img
@@ -48,6 +48,10 @@ export default function BSSM({ source, meta }) {
       </div>
       <style jsx>
         {`
+          .content {
+            position: relative;
+            padding-bottom: 75%;
+          }
           .main {
             background-color: white;
           }
@@ -69,7 +73,10 @@ export default function BSSM({ source, meta }) {
             border-radius: 50%;
           }
           .bssms {
+            object-fit: cover;
+            position: absolute;
             width: 100%;
+            height: 100%;
             border-radius: 10px 10px 0 0;
           }
           .bssm {
@@ -81,6 +88,11 @@ export default function BSSM({ source, meta }) {
           }
           .description {
             color: #003459;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
           }
           .topic {
             color: #01949b;
