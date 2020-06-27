@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  Nav,
+  NavItem,
+  Dropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu,
+  NavLink,
+} from "reactstrap";
 
 export default function Navigation(props) {
   const router = useRouter();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen(!dropdownOpen);
 
   const [ac, setac] = useState(0);
   useEffect(() => {
@@ -43,28 +55,51 @@ export default function Navigation(props) {
             </Link>
           </li>
         </ul>
-        <div className="navbar-header">
-          <Link href="/user">
-            <a className="brand">
-              {props.user && props.user.photo.trim() != "" ? (
-                <div className="outer-circle">
+        <div className="navbar-header d-flex align-items-center">
+          <div className="pr-4">
+            <Link href="/user">
+              <a className="brand">
+                {props.user && props.user.photo.trim() != "" ? (
+                  <div className="outer-circle">
+                    <img
+                      src={props.user.photo}
+                      className="rounded-circle"
+                      alt="profile"
+                      height="28px"
+                    />
+                  </div>
+                ) : (
                   <img
-                    src={props.user.photo}
+                    src="/images/navigation/avatar.jpg"
                     className="rounded-circle"
                     alt="profile"
-                    height="28px"
+                    height="30px"
                   />
-                </div>
-              ) : (
+                )}
+              </a>
+            </Link>
+          </div>
+
+          <div className="ml-5 pl-3">
+            <Dropdown nav isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle nav>
                 <img
-                  src="/images/navigation/avatar.jpg"
-                  className="rounded-circle"
-                  alt="profile"
-                  height="30px"
+                  src="/images/icons/hamburger.png"
+                  alt="ham"
+                  height="20px"
                 />
-              )}
-            </a>
-          </Link>
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>
+                  <Link href="/create">
+                    <a>Create</a>
+                  </Link>
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Settings</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
         </div>
       </div>
       <style jsx>

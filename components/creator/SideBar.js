@@ -1,6 +1,6 @@
 import { useState } from "react";
 export default function SideBar(props) {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(props.value || 0);
   return (
     <div className={props.className}>
       <div className="orange shadow px-5">

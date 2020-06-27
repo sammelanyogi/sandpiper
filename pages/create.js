@@ -10,7 +10,7 @@ export default function Forum() {
                 <div className="container mx-auto">
                     <div className="row">
                         <div className="col-4">
-                            <Sidebar getValue={x => console.log(x)} />
+                            <Sidebar value={1} getValue={x => console.log(x)} />
                         </div>
                         <div className="col-8">
                             <BSSMUpload />

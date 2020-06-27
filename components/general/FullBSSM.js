@@ -51,16 +51,19 @@ export default function FullBSSM({ source, meta, number }) {
             <div className="px-4">
               <table>
                 <tbody>
-                  <tr className="bsq">
-                    <td className="py-2">
-                      <img
-                        className="other-image"
-                        src="/images/icons/BSQs@2x.png"
-                        alt="icon"
-                      />
-                    </td>{" "}
-                    <td className="pl-4">BSQs</td>
-                  </tr>
+                  <Link href="/bsqs">
+                    <tr className="bsq">
+                      <td className="py-2">
+                        <img
+                          className="other-image"
+                          src="/images/icons/BSQs@2x.png"
+                          alt="icon"
+                        />
+                      </td>{" "}
+                      <td className="pl-4">BSQs</td>
+                    </tr>
+                  </Link>
+
                   <Link href={`/discussions/${23}`}>
                     <tr className="forum">
                       <td className="py-2">
@@ -92,10 +95,10 @@ export default function FullBSSM({ source, meta, number }) {
       </div>
       <style jsx>
         {`
-        .hr {
-          background-color: #01949b;
-          height: 3px;
-        }
+          .hr {
+            background-color: #01949b;
+            height: 3px;
+          }
           .content {
             position: relative;
             padding-bottom: 56.75%;
@@ -162,6 +165,9 @@ export default function FullBSSM({ source, meta, number }) {
             font-size: 1.2rem;
           }
           .forum {
+            cursor: pointer;
+          }
+          .bsq {
             cursor: pointer;
           }
         `}

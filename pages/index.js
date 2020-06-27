@@ -79,7 +79,7 @@ class Home extends Component {
             );
           })}
         </div>
-        <div className="outer-carousel">
+        <div className="outer-carousel my-4">
           <div className="py-4 container d-flex justify-content-center flex-column">
             <div className="title mx-auto">Explore BSSM</div>
             <div className="text-center py-3">
@@ -127,7 +127,7 @@ class Home extends Component {
                 </div>
               </div>
               <div>
-                <img src="/images/icons/Search.png" alt="Q" />
+                <img src="/images/icons/Search.png" alt="Q" className="search"/>
                 <input
                   className="no-border"
                   type="search"
@@ -143,15 +143,25 @@ class Home extends Component {
 
         <style>
           {`
+          .search {
+            width: 25px;
+            margin-right: 10px;
+          }
+          input {
+            border-radius: 15px;
+            padding-left: 15px;
+          }
           .activesearch {
             border: 2px solid #003459;
             border-radius: 10px;
             padding: 0.5rem;
+            cursor: pointer;
           }
           .unactivesearch {
             border: 2px solid #ffffff;
             border-radius: 10px;
             padding: 0.5rem;
+            cursor: pointer;
           }
           .carousel {
             margin-top: -300px;
