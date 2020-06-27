@@ -180,19 +180,22 @@ function MaterialModal(props) {
         <img
           src="/images/icons/left.png"
           alt="left"
-          className="px-4"
+          className="px-4 butt"
           onClick={props.left}
         />
         <FullBSSM source={props.source} meta={props.meta} />
         <img
           src="/images/icons/right.png"
           alt="left"
-          className="px-4"
+          className="px-4 butt"
           onClick={props.right}
         />
       </div>
       <style jsx global>
         {`
+          .butt {
+            cursor: pointer;
+          }
           .modal-content {
             border: none !important;
             background-color: transparent !important;

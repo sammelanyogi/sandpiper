@@ -14,6 +14,7 @@ export default function SideBar(props) {
                     props.getValue(index);
                     setCurrent(index);
                   }}
+                  key={index}
                 >
                   <td className="iconn">
                     <img src={item.src} alt={item.name} />
