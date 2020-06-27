@@ -1,7 +1,7 @@
 export default function Comments({ creator, comment }) {
   return (
-    <div>
-      <div className="d-flex align-items-center">
+    <div className="py-2 comment">
+      <div className="pb-2 d-flex align-items-center">
         <div>
           <img
             src={creator.image}
@@ -20,6 +20,9 @@ export default function Comments({ creator, comment }) {
       <div className="description">{comment.text}</div>
       <style>
         {`
+        .comment {
+          color: #004368;
+        }
           .creator-image {
             width: 30px;
             height: 30px;

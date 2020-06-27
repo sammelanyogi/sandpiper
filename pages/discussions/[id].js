@@ -10,16 +10,23 @@ export default function Content({ id }) {
           <div className="col-md-4">
             <div className="title py-4">Recently Explored</div>
             <BSSM source={bssm.source} meta={bssm.meta} />
+            <div>
+              <div className="title py-4">Similar Contents</div>
+            </div>
           </div>
           <div className="col-md-8">
             <div className="title py-4">Discussions</div>
             {comments.map((item, index) => {
-              return <CommentwithReplies creator={item.creator} comment={item.comment} key={index} />;
+              return (
+                <CommentwithReplies
+                  creator={item.creator}
+                  comment={item.comment}
+                  replies={item.replies}
+                  key={index}
+                />
+              );
             })}
           </div>
-        </div>
-        <div>
-          <div className="title py-4">Similar Contents</div>
         </div>
       </div>
       <style>
@@ -50,15 +57,25 @@ const bssm = {
 };
 const comments = [
   {
-    creator: { name: "Sammelan Yogi", image: "/images/banjara.png" },
+    creator: { name: "Anoj Banjara", image: "/images/banjara.png" },
     comment: { date: "2015-1-2", text: "Why are you like this?" },
+    replies: [
+      {
+        creator: { name: "A Great Replier", image: "/images/banjara.png" },
+        comment: { date: "2015-1-2", text: "Why do you care man" },
+      },
+      {
+        creator: { name: "Sammelan Yogi", image: "/images/banjara.png" },
+        comment: { date: "2015-1-2", text: "Okay Okay Okay. idk dik" },
+      },
+    ],
   },
   {
     creator: { name: "Nirav Baral", image: "/images/banjara.png" },
-    comment: { date: "2015-1-2", text: "Why are you like this?" },
+    comment: { date: "2015-1-2", text: "sadhai coffee khanchu ani runchhu" },
   },
   {
-    creator: { name: "Sammelan Yogi", image: "/images/banjara.png" },
-    comment: { date: "2015-1-2", text: "Why are you like this?" },
+    creator: { name: "Prajjwal Uprety", image: "/images/banjara.png" },
+    comment: { date: "2015-1-2", text: "Hey you. I like Rajbhandari aru malai baal chhaina" },
   },
 ];

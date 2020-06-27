@@ -5,7 +5,7 @@ export default function SideBar(props) {
     <>
       <div className="orange shadow px-5">
         <table className="table table-borderless">
-          <div className="d-flex flex-column justify-content-between ">
+          <tbody className="d-flex flex-column justify-content-between ">
             {data.map((item, index) => {
               return (
                 <tr
@@ -13,6 +13,7 @@ export default function SideBar(props) {
                     props.getValue(index);
                     setCurrent(index);
                   }}
+                  key={index}
                 >
                   <td className="iconn">
                     <img src={item.src} alt={item.name} />
@@ -23,7 +24,7 @@ export default function SideBar(props) {
                 </tr>
               );
             })}
-          </div>
+          </tbody>
         </table>
       </div>
       <style jsx>
