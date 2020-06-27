@@ -1,6 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function FullBSSM({ source, meta, number }) {
+  const ref = useRef();
+  const [overflowed, setOverflowed] = useState(false);
+  useEffect(() => {
+    setOverflowed(
+      ref.current.offsetHeight < ref.current.scrollHeight ||
+        ref.current.offsetWidth < ref.current.scrollWidth
+    );
+  }, []);
   return (
     <div className="main">
       <div className="bssm d-flex flex-column ">
@@ -20,7 +28,7 @@ export default function FullBSSM({ source, meta, number }) {
             <div className="d-flex justify-content-between">
               <div>
                 <div className="topic py-2">{meta.topic}</div>
-                <div className="metatitle">{meta.title}</div>
+                <div className="metatitle">{meta.title}  {overflowed.toString()}</div>
               </div>
               <div>
                 <span>Save</span>
@@ -29,7 +37,10 @@ export default function FullBSSM({ source, meta, number }) {
             </div>
 
             <div className="meta">
-              <div className="description">{meta.description}</div>
+              <div ref={ref} className="description">
+                {meta.description}
+              </div>
+              {overflowed && <div>Read More</div> }
             </div>
           </div>
 
@@ -108,6 +119,11 @@ export default function FullBSSM({ source, meta, number }) {
           }
           .description {
             color: #003459;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
           }
           .topic {
             color: #01949b;

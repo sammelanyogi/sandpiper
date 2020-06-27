@@ -3,7 +3,7 @@ import BSSM from "../components/general/BSSM";
 
 import React, { Component } from "react";
 import $ from "jquery";
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 import { Modal, ModalBody } from "reactstrap";
 import FullBSSM from "../components/general/FullBSSM";
 import Link from "next/link";
@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
   require("materialize-css");
 }
 
- class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ if (typeof window !== "undefined") {
       searchState: 1,
     };
   }
-  
+
   goLeft(i) {
     let newarr = this.state.modalShow;
     newarr[i] = !this.state.modalShow[i];
@@ -42,13 +42,13 @@ if (typeof window !== "undefined") {
   toggleStyle(i) {
     let newarr = this.state.modalShow;
     newarr[i] = !this.state.modalShow[i];
-    if(this.state.modalShow[i]==false) {
-      this.state.router.push('/')
+    if (this.state.modalShow[i] == false) {
+      this.state.router.push("/");
     }
     this.setState({ modalShow: newarr });
   }
   componentDidMount() {
-    console.log(this.state.router)
+    console.log(this.state.router);
     $(".carousel").carousel();
   }
   render() {
@@ -71,7 +71,7 @@ if (typeof window !== "undefined") {
                   onHide={() => this.toggleStyle(index)}
                 />
                 <Link href={`/?query=${index}`} as={`/content/${index}`}>
-                  <a style={{textDecoration: "none"}}>
+                  <a style={{ textDecoration: "none" }}>
                     <BSSM source={item.source} meta={item.meta} />
                   </a>
                 </Link>
@@ -195,7 +195,7 @@ function MaterialModal(props) {
         {`
           .modal-content {
             border: none !important;
-            background-color: transparent !important; 
+            background-color: transparent !important;
           }
           .modal-xl {
             max-width: 80vw;
@@ -207,8 +207,8 @@ function MaterialModal(props) {
 }
 const HomeWithRouter = (props) => {
   const router = useRouter();
-  return <Home {...props} router={router} />
-}
+  return <Home {...props} router={router} />;
+};
 export default HomeWithRouter;
 
 const bssms = [
@@ -219,7 +219,8 @@ const bssms = [
       type: "image",
       topic: "Not a Bambi",
       title: "Hey I am a Bear",
-      description: "This is a cool description.",
+      description:
+        "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes.",
       creator: { name: "John Doe", image: "/images/banjara.png" },
     },
   },
