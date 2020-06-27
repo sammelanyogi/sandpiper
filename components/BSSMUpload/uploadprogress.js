@@ -22,7 +22,8 @@ export default function UploadProgress({progress}){
 				bottom:100%;
 				background-color:red;
 				color:red;
-				width:"${progress}%";
+				width:${progress}%;
+				display:block;
 				height:10px;
 			}
 		`}

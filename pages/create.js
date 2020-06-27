@@ -6,7 +6,7 @@ import axios from "axios"
 
 export default function Forum() {
     let [curpage, setCurpage] = useState("video")
-    let [uploadProgress, setUploadProgress] = useState(2);
+    let [uploadProgress, setUploadProgress] = useState(0);
 
     function sendVideoToServer(form){
        axios.post("", ) 
@@ -17,16 +17,15 @@ export default function Forum() {
             headers: {'Content-Type': 'multipart/form-data' },
             onUploadProgress: function(progressEvent) {
               var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-              console.log(percentCompleted)
               setUploadProgress(percentCompleted)
             }
         })
         .then(function (response) {
-            //handle success
+            alert("upload done. Now upload another.")
             console.log(response);
         })
         .catch(function (response) {
-            //handle error
+            alert("I'm sorry, file didn't upload. I thought I'd save some bucks by using a server in East US but turns out: it has a lot of latency. :(But it could also be a problem of the DNS thing. I bought the domain name from a really shady dealer :3 If you're having real trouble, I'll move the server to Central India, and switch to a better DNS provider")
             console.log(response);
         });
     }
