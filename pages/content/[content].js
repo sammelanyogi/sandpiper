@@ -1,31 +1,75 @@
-import BSSM from "../../components/general/BSSM";
+import SimilarBSSM from "../../components/general/SimilarBSSM";
+import SelfBSSM from "../../components/general/SelfBSSM";
 import Layout from "../../components/Layout";
+import { useState } from "react";
 
 export default function Content({ id }) {
+  const [current, setCurrent] = useState(0);
   return (
     <Layout title="Content">
       <div className="container py-5">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="title py-4">Recently Explored</div>
-            <BSSM source={bssm.source} meta={bssm.meta} />
+        <div className="title">Browse Similar Contents</div>
+        <div className="description">
+          The quick brown fox jumps over a lazy dog. DJs f l ockbywhenMTVax q ui
+          zprog.JunkM TVquizg raced byfoxwhel s.Baw dsjog,flick quartz,vex
+          nymphs.Waltz,badnymph.
+        </div>
+        <div className="my-5 box py-2 px-4 d-flex justify-content-between">
+          <div className="d-flex">
+            <div onClick={()=> setCurrent(0)} className={current == 0 ? "underline cur" : "cur"}>
+              Similar BSSMs
+            </div>
+            <div onClick={()=> setCurrent(1)} className={current == 1 ? "underline cur ml-5" : "ml-5 cur"}>
+              Browse popular topics
+            </div>
           </div>
-          <div className="col-md-6">
-            <div className="title py-4">Discussions</div>
+          <div>Manage Suggestion</div>
+        </div>
+        <div className="row py-4">
+          <div className="col-md-9">
+            <SelfBSSM source={bssm.source} meta={bssm.meta} />
+          </div>
+          <div className="col-md-3">
+            <SimilarBSSM source={bssm.source} meta={bssm.meta} />
           </div>
         </div>
-        <div>
-          <div className="title py-4">Similar Contents</div>
+        <div className="row">
+          {[1, 2, 3, 4, 5, 6].map((item, index) => {
+            return (
+              <div className="col-md-3 my-4" key={index}>
+                <SimilarBSSM source={bssm.source} meta={bssm.meta} />
+              </div>
+            );
+          })}
         </div>
       </div>
-      Sammelan {id}
-      <style>
+      <style jsx>
         {`
-          .title {
-              color: #004368;
-              font-size: 2rem;
+          .cur {
+            cursor: pointer;
           }
-          `}
+          .underline {
+            border-bottom: 4px solid #ffba08;
+          }
+          .box {
+            font-size: 1.5rem;
+
+            color: #004368;
+            border: 2px solid #01949b;
+            border-radius: 10px;
+          }
+          .title {
+            color: #004368;
+            font-size: 2rem;
+            padding-top: 0.7rem;
+            padding-bottom: 1.5rem;
+          }
+          .description {
+            color: #004368;
+            border-left: 2px solid #01949b;
+            padding-left: 2rem;
+          }
+        `}
       </style>
     </Layout>
   );
