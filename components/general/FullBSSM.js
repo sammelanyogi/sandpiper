@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 
 export default function FullBSSM({ source, meta, number }) {
   const ref = useRef();
@@ -28,10 +29,12 @@ export default function FullBSSM({ source, meta, number }) {
             <div className="d-flex justify-content-between">
               <div>
                 <div className="topic py-2">{meta.topic}</div>
-                <div className="metatitle">{meta.title}  {overflowed.toString()}</div>
+                <div className="metatitle">
+                  {meta.title} {overflowed.toString()}
+                </div>
               </div>
               <div>
-                <span>Save</span>
+                <span>Save </span>
                 <span>Download </span>
               </div>
             </div>
@@ -40,47 +43,76 @@ export default function FullBSSM({ source, meta, number }) {
               <div ref={ref} className="description">
                 {meta.description}
               </div>
-              {overflowed && <div>Read More</div> }
+              {overflowed && <div>Read More</div>}
             </div>
           </div>
 
-          <div className="col-md-4 metadata  d-flex flex-column justify-content-between">
-            <div className="creator d-flex justify-content-between">
+          <div className="col-md-4 metadata pt-4 d-flex flex-column justify-content-between">
+            <div className="px-4">
+              <table>
+                <tbody>
+                  <Link href="/bsqs">
+                    <tr className="bsq">
+                      <td className="py-2">
+                        <img
+                          className="other-image"
+                          src="/images/icons/BSQs@2x.png"
+                          alt="icon"
+                        />
+                      </td>{" "}
+                      <td className="pl-4">BSQs</td>
+                    </tr>
+                  </Link>
+
+                  <Link href={`/discussions/${23}`}>
+                    <tr className="forum">
+                      <td className="py-2">
+                        <img
+                          className="other-image"
+                          src="/images/icons/Forums@2x.png"
+                          alt="icon"
+                        />
+                      </td>{" "}
+                      <td className="pl-4">Forums</td>
+                    </tr>
+                  </Link>
+                </tbody>
+              </table>
+            </div>
+            <div className="hr w-75 mx-auto my-2"></div>
+            <div className="pt-3 px-4 d-flex">
               <div>
-                <div>
-                  <img
-                    src={meta.creator.image}
-                    alt={meta.creator.name}
-                    className="creator-image"
-                  />
-                </div>
-                <div>{meta.creator.name}</div>
+                <img
+                  src={meta.creator.image}
+                  alt={meta.creator.name}
+                  className="creator-image"
+                />
               </div>
-              <div>
-                <div className="bsq">
-                  <span>image</span> <span>BSQ</span>
-                </div>
-                <div className="forum">
-                  <span>image</span> <span>FORUM</span>
-                </div>
-              </div>
+              <div className="pl-4 name">{meta.creator.name}</div>
             </div>
           </div>
         </div>
       </div>
       <style jsx>
         {`
+          .hr {
+            background-color: #01949b;
+            height: 3px;
+          }
           .content {
             position: relative;
             padding-bottom: 56.75%;
           }
           .main {
             background-color: white;
-            width: 80vw;
+            width: 70vw;
             border-radius: 10px;
           }
           .metatitle {
             font-size: 1.2rem;
+          }
+          .name {
+            font-size: 1.4rem;
           }
           .d-flex {
             display: flex;
@@ -95,6 +127,9 @@ export default function FullBSSM({ source, meta, number }) {
             width: 30px;
             height: 30px;
             border-radius: 50%;
+          }
+          .other-image {
+            height: 30px;
           }
           .bssms {
             object-fit: cover;
@@ -128,6 +163,12 @@ export default function FullBSSM({ source, meta, number }) {
           .topic {
             color: #01949b;
             font-size: 1.2rem;
+          }
+          .forum {
+            cursor: pointer;
+          }
+          .bsq {
+            cursor: pointer;
           }
         `}
       </style>
