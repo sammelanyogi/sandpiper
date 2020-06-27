@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react"
 import Layout from "../components/Layout";
 import BSSMUpload from "../components/BSSMUpload";
 import Sidebar from "../components/creator/SideBar"
 import axios from "axios"
 
 export default function Forum() {
+    let [curpage, setCurpage] = useState("video")
     return (
         <>
             <Layout title="Forum">
@@ -13,7 +15,9 @@ export default function Forum() {
                             <Sidebar getValue={x => console.log(x)} />
                         </div>
                         <div className="col-8">
-                            <BSSMUpload />
+                            {curpage === "video" &&
+                                <BSSMUpload />
+                            }
                         </div>
                     </div>
                 </div>
