@@ -3,7 +3,7 @@ import SelfBSSM from "../../components/general/SelfBSSM";
 import Layout from "../../components/Layout";
 import { useState } from "react";
 
-export default function Content({ id }) {
+export default function Content({ bssms }) {
   const [current, setCurrent] = useState(0);
   return (
     <Layout title="Content">
@@ -16,10 +16,16 @@ export default function Content({ id }) {
         </div>
         <div className="my-5 box py-2 px-4 d-flex justify-content-between">
           <div className="d-flex">
-            <div onClick={()=> setCurrent(0)} className={current == 0 ? "underline cur" : "cur"}>
+            <div
+              onClick={() => setCurrent(0)}
+              className={current == 0 ? "underline cur" : "cur"}
+            >
               Similar BSSMs
             </div>
-            <div onClick={()=> setCurrent(1)} className={current == 1 ? "underline cur ml-5" : "ml-5 cur"}>
+            <div
+              onClick={() => setCurrent(1)}
+              className={current == 1 ? "underline cur ml-5" : "ml-5 cur"}
+            >
               Browse popular topics
             </div>
           </div>
@@ -27,7 +33,19 @@ export default function Content({ id }) {
         </div>
         <div className="row py-4">
           <div className="col-md-9">
-            <SelfBSSM source={bssm.source} meta={bssm.meta} />
+            <SelfBSSM
+              source={bssms.afu[0].filename}
+              meta={{
+                type: bssms.afu[0].type,
+                title: bssms.afu[0].title,
+                topic: bssms.afu[0].topic,
+                description: bssms.afu[0].description,
+                creator: {
+                  name: "John Doe",
+                  image: "/images/banjara.png",
+                },
+              }}
+            />
           </div>
           <div className="col-md-3">
             <SimilarBSSM source={bssm.source} meta={bssm.meta} />
@@ -76,7 +94,9 @@ export default function Content({ id }) {
 }
 Content.getInitialProps = async (context) => {
   const { content } = context.query;
-  return { id: content };
+  const response = await fetch(`http://bssm.nirav.codes/content/${content}`);
+  const bssms = await response.json();
+  return { bssms: bssms };
 };
 const bssm = {
   source:

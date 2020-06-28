@@ -1,11 +1,20 @@
 import Layout from "../components/Layout";
-import Navigation from "../components/home/Navigation";
-import FullBSSM from "../components/general/FullBSSM";
+import SideBar from "../components/students/SideBar";
+import BSQTest from "../components/students/BSQTest";
 
 export default function BSQs() {
   return (
     <Layout title="BSQs">
-      <div className="px-5 py-2">This is BSQs.</div>
+      <div className="container py-5">
+        <div className="row">
+          <div className="col-4">
+            <SideBar value={1} getValue={(x) => console.log(x)} />
+          </div>
+          <div className="col-8">
+            <BSQTest/>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

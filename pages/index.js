@@ -20,7 +20,10 @@ class Home extends Component {
     this.state = {
       router: props.router,
       bssms: props.bssms,
-      modalShow: Array.apply(false, Array(props.bssms.length)).map(function () {}),
+      modalShow: Array.apply(
+        false,
+        Array(props.bssms.length)
+      ).map(function () {}),
       searchState: 1,
     };
   }
@@ -67,13 +70,34 @@ class Home extends Component {
                   left={() => this.goLeft(index)}
                   right={() => this.goRight(index)}
                   show={this.state.modalShow[index]}
-                  source={item.source}
-                  meta={item.meta}
+                  source={item.filename}
+                  meta={{
+                    type: item.type,
+                    title: item.title,
+                    topic: item.topic,
+                    description: item.description,
+                    creator: {
+                      name: "John Doe",
+                      image: "/images/banjara.png",
+                    },
+                  }}
                   onHide={() => this.toggleStyle(index)}
                 />
-                <Link href={`/?query=${index}`} as={`/content/${index}`}>
+                <Link href={`/`} as={`/content/${item.filename}`}>
                   <a style={{ textDecoration: "none" }}>
-                    <BSSM source={item.source} meta={item.meta} />
+                    <BSSM
+                      source={item.filename}
+                      meta={{
+                        type: item.type,
+                        title: item.title,
+                        topic: item.topic,
+                        description: item.description,
+                        creator: {
+                          name: "John Doe",
+                          image: "/images/banjara.png",
+                        },
+                      }}
+                    />
                   </a>
                 </Link>
               </div>
@@ -128,7 +152,11 @@ class Home extends Component {
                 </div>
               </div>
               <div>
-                <img src="/images/icons/Search.png" alt="Q" className="search"/>
+                <img
+                  src="/images/icons/Search.png"
+                  alt="Q"
+                  className="search"
+                />
                 <input
                   className="no-border"
                   type="search"
@@ -224,70 +252,12 @@ const HomeWithRouter = (props) => {
   return <Home {...props} router={router} />;
 };
 
-HomeWithRouter.getInitialProps = async ()=> {
-  const bssms = [
-    {
-      source:
-        "https://www.pixelstalk.net/wp-content/uploads/2016/07/3D-Nice-Wallpapers.jpg",
-      meta: {
-        type: "image",
-        topic: "Not a Bambi",
-        title: "Hey I am a Bear",
-        description:
-          "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes.",
-        creator: { name: "John Doe", image: "/images/banjara.png" },
-      },
-    },
-    {
-      source:
-        "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
-      meta: {
-        type: "image",
-        topic: "Science and Technology",
-        title: "Measurements",
-        description: "This is a cool description.",
-        creator: { name: "John Doe", image: "/images/banjara.png" },
-      },
-    },
-    {
-      source:
-        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-      meta: {
-        type: "video",
-        topic: "Animations",
-        title: "A Bear Story",
-        description: "Look! I am eating an apple.",
-        creator: { name: "John Doe", image: "/images/banjara.png" },
-      },
-    },
-    {
-      source:
-        "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
-      meta: {
-        type: "image",
-        topic: "Science and Technology",
-        title: "Measurements",
-        description: "This is a cool description.",
-        creator: { name: "John Doe", image: "/images/banjara.png" },
-      },
-    },
-    {
-      source:
-        "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
-      meta: {
-        type: "image",
-        topic: "Science and Technology",
-        title: "Measurements",
-        description: "This is a cool description.",
-        creator: { name: "John Doe", image: "/images/banjara.png" },
-      },
-    },
-  ];
+HomeWithRouter.getInitialProps = async () => {
+  const response = await fetch("http://bssm.nirav.codes/featuredcontent");
+  const bssms = await response.json();
   return {
-    bssms: bssms
-  }
-  
-}
+    bssms: bssms,
+  };
+};
 
 export default HomeWithRouter;
-

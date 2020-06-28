@@ -10,7 +10,7 @@ export default function BSSM({ source, meta }) {
           )}
           {meta.type == "video" && (
             <video className="bssms" controls>
-              <source src={source} type="video/mp4" />
+              <source src={`http://bssm.nirav.codes/bssmcontent/${source}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           )}

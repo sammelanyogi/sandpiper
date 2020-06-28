@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function FullBSSM({ source, meta, number }) {
+export default function SelfBSSM({ source, meta, number }) {
   const ref = useRef();
   const [overflowed, setOverflowed] = useState(false);
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function FullBSSM({ source, meta, number }) {
           )}
           {meta.type == "video" && (
             <video className="bssms-vid" controls>
-              <source src={source} type="video/mp4" />
+              <source src={`http://bssm.nirav.codes/bssmcontent/${source}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           )}

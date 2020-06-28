@@ -2,14 +2,26 @@ import BSSM from "../../components/general/BSSM";
 import Layout from "../../components/Layout";
 import CommentwithReplies from "../../components/general/internals/CommentwithReplies";
 
-export default function Content({ id }) {
+export default function Content({ bssms }) {
   return (
     <Layout title="Content">
       <div className="container py-5">
         <div className="row">
           <div className="col-md-4">
             <div className="title py-4">Recently Explored</div>
-            <BSSM source={bssm.source} meta={bssm.meta} />
+            <BSSM
+              source={bssms.afu[0].filename}
+              meta={{
+                type: bssms.afu[0].type,
+                title: bssms.afu[0].title,
+                topic: bssms.afu[0].topic,
+                description: bssms.afu[0].description,
+                creator: {
+                  name: "John Doe",
+                  image: "/images/banjara.png",
+                },
+              }}
+            />
             <div>
               <div className="title py-4">Similar Contents</div>
             </div>
@@ -42,7 +54,9 @@ export default function Content({ id }) {
 }
 Content.getInitialProps = async (context) => {
   const { id } = context.query;
-  return { id };
+  const response = await fetch(`http://bssm.nirav.codes/content/${id}`);
+  const bssms = await response.json();
+  return { bssms: bssms };
 };
 const bssm = {
   source:
@@ -76,6 +90,9 @@ const comments = [
   },
   {
     creator: { name: "Prajjwal Uprety", image: "/images/banjara.png" },
-    comment: { date: "2015-1-2", text: "Hey you. I like Rajbhandari aru malai baal chhaina" },
+    comment: {
+      date: "2015-1-2",
+      text: "Hey you. I like momos aru malai baal chhaina",
+    },
   },
 ];

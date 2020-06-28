@@ -19,7 +19,7 @@ export default function FullBSSM({ source, meta, number }) {
           )}
           {meta.type == "video" && (
             <video className="bssms-vid" controls>
-              <source src={source} type="video/mp4" />
+              <source src={`http://bssm.nirav.codes/bssmcontent/${source}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           )}
@@ -29,9 +29,12 @@ export default function FullBSSM({ source, meta, number }) {
             <div className="d-flex justify-content-between">
               <div>
                 <div className="topic py-2">{meta.topic}</div>
+                <Link href={`/content/${source}`}>
                 <div className="metatitle">
                   {meta.title} {overflowed.toString()}
-                </div>
+                </div>             
+                </Link>
+
               </div>
               <div>
                 <span>Save </span>
@@ -64,7 +67,7 @@ export default function FullBSSM({ source, meta, number }) {
                     </tr>
                   </Link>
 
-                  <Link href={`/discussions/${23}`}>
+                  <Link href={`/discussions/${source}`}>
                     <tr className="forum">
                       <td className="py-2">
                         <img
@@ -110,6 +113,7 @@ export default function FullBSSM({ source, meta, number }) {
           }
           .metatitle {
             font-size: 1.2rem;
+            cursor: pointer;
           }
           .name {
             font-size: 1.4rem;
