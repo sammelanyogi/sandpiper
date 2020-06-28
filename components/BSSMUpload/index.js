@@ -2,6 +2,8 @@ import { useState } from "react"
 import Upload from "./upload"
 import UploadProgress from "./uploadprogress"
 import Input from "./input"
+
+
 export default function BSSMUpload({ onSubmit:onFormSubmit, progress}) {
     let [file, setFile] = useState(null);
     let title;
@@ -39,3 +41,4 @@ export default function BSSMUpload({ onSubmit:onFormSubmit, progress}) {
         </div>
     )
 }
+
