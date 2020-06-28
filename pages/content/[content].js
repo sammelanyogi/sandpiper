@@ -48,10 +48,44 @@ export default function Content({ bssms }) {
             />
           </div>
           <div className="col-md-3">
-            <SimilarBSSM source={bssm.source} meta={bssm.meta} />
+            {bssms.aru.length > 0 && (
+              <SimilarBSSM
+                source={bssms.aru[0].filename}
+                meta={{
+                  type: bssms.aru[0].type,
+                  title: bssms.aru[0].title,
+                  topic: bssms.aru[0].topic,
+                  description: bssms.aru[0].description,
+                  creator: {
+                    name: "John Doe",
+                    image: "/images/banjara.png",
+                  },
+                }}
+              />
+            )}
           </div>
         </div>
         <div className="row">
+          {bssms.aru.length > 1 &&
+            aru.map(
+              (item, index) =>
+                index != 0 && (
+                  <SimilarBSSM
+                    key={index}
+                    source={item.filename}
+                    meta={{
+                      type: item.type,
+                      title: item.title,
+                      topic: item.topic,
+                      description: item.description,
+                      creator: {
+                        name: "John Doe",
+                        image: "/images/banjara.png",
+                      },
+                    }}
+                  />
+                )
+            )}
           {[1, 2, 3, 4, 5, 6].map((item, index) => {
             return (
               <div className="col-md-3 my-4" key={index}>
@@ -96,6 +130,7 @@ Content.getInitialProps = async (context) => {
   const { content } = context.query;
   const response = await fetch(`http://bssm.nirav.codes/content/${content}`);
   const bssms = await response.json();
+  console.log(bssms);
   return { bssms: bssms };
 };
 const bssm = {

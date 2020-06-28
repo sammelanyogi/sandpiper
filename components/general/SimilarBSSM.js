@@ -6,7 +6,7 @@ export default function BSSM({ source, meta }) {
       <div className="bssm d-flex flex-column ">
         <div className="content">
           {meta.type == "image" && (
-            <img src={source} className="bssms" alt="bssm" />
+            <img src={`http://bssm.nirav.codes/bssmcontent/${source}`} className="bssms" alt="bssm" />
           )}
           {meta.type == "video" && (
             <video className="bssms" controls>
