@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import Layout from "../components/Layout";
-import BSSMUpload from "../components/BSSMUpload";
-import Sidebar from "../components/creator/SideBar"
+import Layout from "../../components/Layout";
+import BSSMUpload from "../../components/BSSMUpload";
+import Sidebar from "../../components/creator/SideBar"
 import axios from "axios"
 
 export default function Forum() {
