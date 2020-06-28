@@ -19,7 +19,8 @@ class Home extends Component {
     super(props);
     this.state = {
       router: props.router,
-      modalShow: Array.apply(false, Array(bssms.length)).map(function () {}),
+      bssms: props.bssms,
+      modalShow: Array.apply(false, Array(props.bssms.length)).map(function () {}),
       searchState: 1,
     };
   }
@@ -55,7 +56,7 @@ class Home extends Component {
     return (
       <Layout title="Home">
         <div className="carousel" style={{ height: "1000px" }}>
-          {bssms.map((item, index) => {
+          {this.state.bssms.map((item, index) => {
             return (
               <div
                 onClick={() => this.toggleStyle(index)}
@@ -222,63 +223,71 @@ const HomeWithRouter = (props) => {
   const router = useRouter();
   return <Home {...props} router={router} />;
 };
+
+HomeWithRouter.getInitialProps = async ()=> {
+  const bssms = [
+    {
+      source:
+        "https://www.pixelstalk.net/wp-content/uploads/2016/07/3D-Nice-Wallpapers.jpg",
+      meta: {
+        type: "image",
+        topic: "Not a Bambi",
+        title: "Hey I am a Bear",
+        description:
+          "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes.",
+        creator: { name: "John Doe", image: "/images/banjara.png" },
+      },
+    },
+    {
+      source:
+        "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
+      meta: {
+        type: "image",
+        topic: "Science and Technology",
+        title: "Measurements",
+        description: "This is a cool description.",
+        creator: { name: "John Doe", image: "/images/banjara.png" },
+      },
+    },
+    {
+      source:
+        "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
+      meta: {
+        type: "video",
+        topic: "Animations",
+        title: "A Bear Story",
+        description: "Look! I am eating an apple.",
+        creator: { name: "John Doe", image: "/images/banjara.png" },
+      },
+    },
+    {
+      source:
+        "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
+      meta: {
+        type: "image",
+        topic: "Science and Technology",
+        title: "Measurements",
+        description: "This is a cool description.",
+        creator: { name: "John Doe", image: "/images/banjara.png" },
+      },
+    },
+    {
+      source:
+        "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
+      meta: {
+        type: "image",
+        topic: "Science and Technology",
+        title: "Measurements",
+        description: "This is a cool description.",
+        creator: { name: "John Doe", image: "/images/banjara.png" },
+      },
+    },
+  ];
+  return {
+    bssms: bssms
+  }
+  
+}
+
 export default HomeWithRouter;
 
-const bssms = [
-  {
-    source:
-      "https://www.pixelstalk.net/wp-content/uploads/2016/07/3D-Nice-Wallpapers.jpg",
-    meta: {
-      type: "image",
-      topic: "Not a Bambi",
-      title: "Hey I am a Bear",
-      description:
-        "Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is one of four rhetorical modes, along with exposition, argumentation, and narration. In practice it would be difficult to write literature that drew on just one of the four basic modes.",
-      creator: { name: "John Doe", image: "/images/banjara.png" },
-    },
-  },
-  {
-    source:
-      "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
-    meta: {
-      type: "image",
-      topic: "Science and Technology",
-      title: "Measurements",
-      description: "This is a cool description.",
-      creator: { name: "John Doe", image: "/images/banjara.png" },
-    },
-  },
-  {
-    source:
-      "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
-    meta: {
-      type: "video",
-      topic: "Animations",
-      title: "A Bear Story",
-      description: "Look! I am eating an apple.",
-      creator: { name: "John Doe", image: "/images/banjara.png" },
-    },
-  },
-  {
-    source:
-      "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
-    meta: {
-      type: "image",
-      topic: "Science and Technology",
-      title: "Measurements",
-      description: "This is a cool description.",
-      creator: { name: "John Doe", image: "/images/banjara.png" },
-    },
-  },
-  {
-    source:
-      "https://public-media.si-cdn.com/filer/29/0f/290fb8c0-1872-46e5-8c12-235742905def/science_smithsonian_magazine_booklist_2019.png",
-    meta: {
-      type: "image",
-      topic: "Science and Technology",
-      title: "Measurements",
-      description: "This is a cool description.",
-      creator: { name: "John Doe", image: "/images/banjara.png" },
-    },
-  },
-];
